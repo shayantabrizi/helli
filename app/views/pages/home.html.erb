@@ -1,0 +1,20 @@
+<h1>Select</h1>
+<p>
+<ol>
+  <% @ss.each do |t| %>
+    <%= form_for @selection do |f| %>
+    <li>
+    <ul>
+      <% @sems[t.id].each do |u| %>
+        <li>
+        <%=u.name%>
+        </li>
+      <%end%>
+    </ul>
+
+
+    </li>
+
+  <% end %>
+</ol>
+</p>

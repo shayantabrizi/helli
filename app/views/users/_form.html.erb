@@ -1,0 +1,47 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name%><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.number_field :number %>
+  </div>
+
+  <div class="field">
+    <ol>
+      <%(1..@seminars.count).each do |r|%>
+        <li><%=@seminars[r].name%>
+        <table border="0">
+          <%=f.fields_for :selections do |builder| %>
+            <%if builder.object.seminar_id==r%>
+              <tr>
+                <td width="500px">
+                  <%=builder.label :rank, @topics[builder.object.seminar_id][builder.object.topic_id].name %></td>
+                <%=builder.hidden_field :topic_id, :value =>builder.object.topic_id%>
+                <%=builder.hidden_field :seminar_id, :value =>builder.object.seminar_id%>
+                <td>            <%=builder.number_field :rank, :size =>1%> </td>
+              </tr>
+            <%end%>
+          <%end%>
+        </table>
+        </li>
+      <%end%>
+    </ol>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
