@@ -22,7 +22,7 @@
 
   <div class="field">
     <ol>
-      <%(1..@seminars.count).each do |r|%>
+      <%(1..(@seminars.count)).each do |r|%>
         <li><%=@seminars[r].name%>
         <table border="0">
           <%=f.fields_for :selections do |builder| %>

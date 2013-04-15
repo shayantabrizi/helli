@@ -152,7 +152,7 @@ private
       return true;
     end
 
-
+=begin    
     sems.each do |t|
       if t.rank.blank?
         return false;
@@ -164,6 +164,7 @@ private
         return false;
       end
     end
+=end    
     return true;
   end
   

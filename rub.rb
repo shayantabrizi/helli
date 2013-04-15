@@ -1,0 +1,67 @@
+	require 'rubygems'
+require 'ods'
+
+
+def addi(sheet, c, n, day, t = 0, r = (8..16))
+r.each do |i|
+    if not(sheet[i, c].value.blank?)
+      t = t + 1;
+      Seminar.where(day: day, session: n)[0].topics.create(name: sheet[i, c].value, number: t)
+    end
+end
+end
+
+(1..12).each do |t|
+	Seminar.create(day:1, session: t, name: "#{1}_#{t}")
+end
+(1..10).each do |t|
+	Seminar.create(day:2, session: t, name: "#{2}_#{t}")
+end
+
+
+ods = Ods.new('input.ods')
+sheet1 = ods.sheets[0];
+addi(sheet1, :C, 1, 1)
+addi(sheet1, :D, 2, 1)
+addi(sheet1, :E, 3, 1)
+Seminar.where(day: 1, session: 4)[0].topics.create(name: "قرآن انسان رابه کجا میبرد؟", number: 1)
+addi(sheet1, :F, 4, 1, 1, 9..14)
+Seminar.where(day: 1, session: 4)[0].topics.create(name: "ذیگورات 2", number: 8)
+addi(sheet1, :G, 5, 1, 1, 8..14)
+Seminar.where(day: 1, session: 5)[0].topics.create(name: "ذیگورات", number: 8)
+Seminar.where(day: 1, session: 6)[0].topics.create(name: "عاشورا پژوهی ؟", number: 1)
+addi(sheet1, :H, 6, 1, 1, 9..14)
+Seminar.where(day: 1, session: 6)[0].topics.create(name: "contrastive analysis of english-persian proverbs", number: 8)
+Seminar.where(day: 1, session: 7)[0].topics.create(name: "خطبه امام سجاد (ع)", number: 1)
+addi(sheet1, :I, 7, 1, 1, 9..14)
+Seminar.where(day: 1, session: 7)[0].topics.create(name: "podcasting and its effects om listenning compregension skills", number: 8)
+Seminar.where(day: 1, session: 8)[0].topics.create(name: "نتایج  و پیامدهای رخداد عاشورا", number: 6)
+addi(sheet1, :J, 8, 1, 1, 9..14)
+Seminar.where(day: 1, session: 9)[0].topics.create(name: "تعزیه", number: 1)
+addi(sheet1, :K, 9, 1, 1, 9..14)
+Seminar.where(day: 1, session: 9)[0].topics.create(name: "ژئوپارک قشم", number: 8)
+Seminar.where(day: 1, session: 10)[0].topics.create(name: "عاشورا پژوهی ؟", number: 1)
+addi(sheet1, :L, 10, 1, 1, 9..14)
+Seminar.where(day: 1, session: 10)[0].topics.create(name: "پاسارگاد", number: 8)
+Seminar.where(day: 1, session: 11)[0].topics.create(name: "عاشورا پژوهی ؟", number: 1)
+addi(sheet1, :M, 11, 1, 1, 9..14)
+Seminar.where(day: 1, session: 11)[0].topics.create(name: "باغهای ایرانی", number: 8)
+addi(sheet1, :N, 12, 1, 0, 9..16)
+Seminar.where(day: 1, session: 12)[0].topics.create(name: "نقش جهان", number: 6)
+
+addi(sheet1, :O, 1, 2, 0, 9..16)
+addi(sheet1, :P, 2, 2, 0, 9..16)
+addi(sheet1, :Q, 3, 2, 0, 9..16)
+addi(sheet1, :R, 4, 2)
+addi(sheet1, :S, 5, 2)
+addi(sheet1, :T, 6, 2)
+addi(sheet1, :U, 7, 2)
+Seminar.where(day: 2, session: 8)[0].topics.create(name: "نقش قرآن در جامعه بشری", number: 1)
+Seminar.where(day: 2, session: 8)[0].topics.create(name: "ساخت و بررسی آیرودینامیکی اجسام پرنده", number: 2)
+addi(sheet1, :V, 8, 2, 2)
+Seminar.where(day: 2, session: 9)[0].topics.create(name: "عاشورا پژوهی ؟", number: 1)
+addi(sheet1, :W, 9, 2, 1)
+Seminar.where(day: 2, session: 10)[0].topics.create(name: "فلسفه قیام عاشورا", number: 1)
+addi(sheet1, :X, 10, 2, 1)
+
+
